@@ -1,0 +1,63 @@
+# ── 강의자료 (교수님 저작물) ──────────────────────────
+*.pdf
+*.pptx
+*.ppt
+*.docx
+*.hwp
+
+# ── 강의 녹음·녹취 ───────────────────────────────────
+*.m4a
+*.mp3
+*.wav
+*녹음*
+*차시*.txt
+*메모*.txt
+
+# ── 교수님 배포 코드 (수업에서 받은 파일) ────────────
+인공지능개론/HW1_guide.m
+인공지능개론/ex3_knn_my_style.m
+인공지능개론/ex4_knn_generalization.m
+인공지능개론/ex5_knn_space.m
+데이터베이스/쇼핑몰db.txt
+데이터베이스/예제.py
+빅데이터분석/ds1_*.ipynb
+
+# ── 개인정보: 학번 포함 파일 ─────────────────────────
+*202310872*
+CLAUDE.local.md
+
+# ── 코드 없는 교양 과목 (개인 자료) ──────────────────
+미래생활과화학/
+
+# ── MATLAB ───────────────────────────────────────────
+*.asv
+*.mat
+*.fig
+
+# ── C / Visual Studio 빌드 산출물 ────────────────────
+*.pdb
+*.obj
+*.exe
+*.ilk
+*.idb
+*.tlog
+*.log
+*.vcxproj.user
+.vs/
+Debug/
+Release/
+x64/
+
+# ── Python / Jupyter ─────────────────────────────────
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+env*/
+
+# ── 에디터 / OS ──────────────────────────────────────
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store
