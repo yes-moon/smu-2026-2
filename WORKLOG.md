@@ -7,6 +7,15 @@
 
 ---
 
+## 2026-09-21 · 데스크탑
+
+**한 일**
+- 노트북 요청대로 나머지 저장소 6개 커밋 히스토리에서 AI 공동 작성자 서명 제거 → `--force-with-lease`로 push. 파일 내용 변화 없음(메시지만). 로컬 `smu-2026-2`는 노트북이 재작성한 origin/main으로 reset
+- `game-voice-translator` README에 실행 스크린샷 2장(자막 위치 잡기 → 번역 실행), `dragon-slayer-arena`는 워터마크 없는 스크린샷으로 교체
+- 앞으로 데스크탑 커밋도 서명 없이 작성
+
+---
+
 ## 2026-09-20 · 노트북 (3차)
 
 > ⚠️ **히스토리 재작성됨.** 이 저장소 커밋 12개 전부에서 AI 공동 작성자 서명을 제거하고 강제 push 했음. 데스크탑은 다음에 받을 때 "divergent branches" 에러가 날 것 → CLAUDE.md의 해당 절차대로 origin/main 기준으로 맞출 것. 파일 내용·커밋 메시지·날짜는 그대로, 서명 줄만 빠짐.
@@ -21,7 +30,7 @@
 
 **다음 할 일**
 - [x] 기존 커밋의 `Co-Authored-By` 서명 제거 — 사용자 승인 후 완료 (위 경고 참고)
-- [ ] 다른 저장소 6개의 AI 서명 — 사용자가 데스크탑에서 처리하기로 결정. 노트북에서 조사한 현황 (2026-09-20): pygame-games 1/1, yes-moon 3/4, portfolio 4/6 (+ `CLAUDE.md`·`WORKLOG.md` 파일 있음), smu-2026-1 1/1, game-voice-translator 1/4, dragon-slayer-arena 2/4 (서명 있는 커밋/전체). 처리 후 노트북의 `pygame-games`·`yes-moon` 클론은 다시 받아야 함
+- [x] 다른 저장소 6개의 AI 서명 (데스크탑 2026-09-21 완료) — 사용자가 데스크탑에서 처리하기로 결정. 노트북에서 조사한 현황 (2026-09-20): pygame-games 1/1, yes-moon 3/4, portfolio 4/6 (+ `CLAUDE.md`·`WORKLOG.md` 파일 있음), smu-2026-1 1/1, game-voice-translator 1/4, dragon-slayer-arena 2/4 (서명 있는 커밋/전체). 처리 후 노트북의 `pygame-games`·`yes-moon` 클론은 다시 받아야 함
 
 ---
 
