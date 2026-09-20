@@ -21,7 +21,7 @@
 
 **다음 할 일**
 - [x] 기존 커밋의 `Co-Authored-By` 서명 제거 — 사용자 승인 후 완료 (위 경고 참고)
-- [ ] (데스크탑) 다른 저장소 6개(pygame-games·yes-moon·portfolio·smu-2026-1·game-voice-translator·dragon-slayer-arena)도 같은 서명 있음 — 클론이 데스크탑에 있으니 거기서 같은 방식으로. 사용자에게 먼저 확인할 것
+- [ ] 다른 저장소 6개의 AI 서명 — 사용자가 데스크탑에서 처리하기로 결정. 노트북에서 조사한 현황 (2026-09-20): pygame-games 1/1, yes-moon 3/4, portfolio 4/6 (+ `CLAUDE.md`·`WORKLOG.md` 파일 있음), smu-2026-1 1/1, game-voice-translator 1/4, dragon-slayer-arena 2/4 (서명 있는 커밋/전체). 처리 후 노트북의 `pygame-games`·`yes-moon` 클론은 다시 받아야 함
 
 ---
 
