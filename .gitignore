@@ -15,9 +15,6 @@
 
 # ── 교수님 배포 코드 (수업에서 받은 파일) ────────────
 인공지능개론/HW1_guide.m
-인공지능개론/ex3_knn_my_style.m
-인공지능개론/ex4_knn_generalization.m
-인공지능개론/ex5_knn_space.m
 데이터베이스/쇼핑몰db.txt
 데이터베이스/예제.py
 빅데이터분석/ds1_*.ipynb
