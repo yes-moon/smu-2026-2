@@ -21,8 +21,8 @@
 
 **다음 할 일**
 - [ ] (사용자) GitHub 프로필에서 핀 고정 — API로 불가. Customize your pins → game-voice-translator · dragon-slayer-arena · portfolio · smu-2026-2 · smu-2026-1 · pygame-games
-- [ ] `dragon-slayer-arena` 플레이 영상(233MB mp4)을 GIF/짧은 클립으로 줄여 README에 넣기
-- [ ] `smu-2026-1` 인터랙션디자인 중간 프로젝트(zip 2.3GB)에서 직접 짠 스크립트만 추려 추가할지 결정
+- [x] `dragon-slayer-arena` 플레이 영상 → 보스전 7초 GIF(3.8MB) + 전투/승리 스틸컷을 README에 추가
+- [x] 인터디 zip(2.3GB) 확인 — 기말 제출본(기획안 PDF·영상·unitypackage)이라 새 코드 없음, 추가 안 함
 - [ ] `코드읽기훈련` 폴더는 개인 학습 로그라 비공개 유지 — 공개할지 결정
 
 ---
