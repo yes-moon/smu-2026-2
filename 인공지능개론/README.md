@@ -2,10 +2,12 @@
 
 MATLAB R2025b + Statistics and Machine Learning Toolbox 사용
 
+> **HW3 (KNN 실습)** : `ex1_dataload_visualization.m` ~ `ex5_knn_space.m` 5개 파일. 아래 3주차 표 참고
+
 ## 2주차 - MATLAB 기초
 
 - `practice1.m` : 행렬 인덱싱, zeros/ones/length, plot/stem/bar, subplot, find 연습
-- `HW1.m` : 키-몸무게 데이터로 Weight = 0.2*Height + 30 을 행렬곱으로 표현. Height 6x2 (2열은 ones), t = [0.2; 30] 으로 Height*t 하면 Weight가 나오는지 확인. 차이가 전부 0 나옴
+- `HW1.m` : 키-몸무게 데이터로 `Weight = 0.2*Height + 30` 을 행렬곱으로 표현. Height 6x2 (2열은 ones), `t = [0.2; 30]` 으로 `Height*t` 하면 Weight가 나오는지 확인. 차이가 전부 0 나옴
 
 ## 3주차 - kNN (k-Nearest Neighbor)
 
