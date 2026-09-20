@@ -12,7 +12,9 @@
 > ⚠️ **히스토리 재작성됨.** 이 저장소 커밋 12개 전부에서 AI 공동 작성자 서명을 제거하고 강제 push 했음. 데스크탑은 다음에 받을 때 "divergent branches" 에러가 날 것 → CLAUDE.md의 해당 절차대로 origin/main 기준으로 맞출 것. 파일 내용·커밋 메시지·날짜는 그대로, 서명 줄만 빠짐.
 
 **한 일**
+- ✅ **HW3 e-campus 제출 완료** (2026-09-20, 마감 09-24). 제출 파일 `HW3_KNN실습.txt` = 폴더 링크 한 줄. 노트북 바탕화면은 OneDrive(`C:\Users\tauda\OneDrive\바탕 화면`)라 그쪽에 저장
 - 데스크탑 요청대로 인공지능개론 ex3~ex5 추가 (HW3: 모든 kNN 실습 업로드). `.gitignore`에서 예외 처리
+- 인공지능개론 README 맨 위에 "HW3 = ex1~ex5" 안내 추가, HW1 수식의 `*`가 이탤릭으로 깨지던 것 백틱으로 수정
 - 인공지능개론·루트 README를 직접 쓴 노트 톤으로 다시 씀
 - 제출 링크 검증: `https://github.com/yes-moon/smu-2026-2/tree/main/인공지능개론` HTTP 200, 파일 5개 + README
 - CLAUDE.md에 "커밋 메시지에 AI 공동 작성자 서명 넣지 않기" 규칙 추가 — 이 커밋부터 적용
