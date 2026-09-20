@@ -7,15 +7,17 @@
 
 ---
 
-## 2026-09-20 · 노트북 (2차 세션)
+## 2026-09-20 · 데스크탑
+
+> 라벨 정정 (노트북 세션에서): 원래 "노트북 (2차 세션)"으로 기록됐으나 `D:\GITHUB\` 경로는 데스크탑 것 (노트북은 C:·G:만 있음). 데스크탑 Claude는 `CLAUDE.local.md`에 `기기: 데스크탑`을 만들어 둘 것.
 
 **한 일**
 - 실무 포트폴리오 저장소 `portfolio` 공개 — 회사 산출물 2차 검수(식별정보 삭제·치환·이미지 마스킹) 후 push. 상세는 그 저장소 `WORKLOG.md`
 - 프로필 README Projects 표에 portfolio 행 추가
-- 노트북 환경: gh CLI 설치·로그인, 전역 git 설정, 저장소 4개를 `D:\GITHUB\` 아래에 모음 (`portfolio`·`smu-2026-2`·`pygame-games`·`yes-moon`)
+- 데스크탑 환경: gh CLI 설치·로그인, 전역 git 설정, 저장소 4개를 `D:\GITHUB\` 아래에 모음 (`portfolio`·`smu-2026-2`·`pygame-games`·`yes-moon`)
 
 **다음 할 일**
-- [ ] (데스크탑) `portfolio` 클론 후 README·스크린샷 꾸미기 — 그 저장소 WORKLOG 참고
+- [ ] (노트북) `portfolio` 클론 후 README·스크린샷 꾸미기 — 그 저장소 WORKLOG 참고
 
 ---
 
