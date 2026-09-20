@@ -7,6 +7,25 @@
 
 ---
 
+## 2026-09-20 · 데스크탑 (3차 세션)
+
+**한 일**
+- 이 PC(`D:\대학과제`)에서 개발한 것들을 찾아 저장소 3개 신규 공개 — 학번·실명 전부 제거, 강의자료·교수님 배포 코드(`sorting/`) 제외
+  - `game-voice-translator` — 개인 프로젝트, 실시간 게임 음성 번역 자막 (Python 1,100줄). README 재작성(파이프라인 다이어그램·설계 포인트)
+  - `dragon-slayer-arena` — 인터랙션디자인 기말 Unity 게임. 직접 작성한 C# 18개·씬·설정만 포함(에셋스토어 패키지 제외), 스크린샷 2장, 발표 대본
+  - `smu-2026-1` — 2학년 1학기: 자료구조 C 8개(MSVC 전부 컴파일 확인, `array_list.c` 미완성 switch 완성 + insert 경계 버그 수정), 객프 Java 5과제(노트북에서 .java 추출, javac 실행 확인), 데이터분석 노트북 4개(출력 비움)
+- 프로필 README 전면 개편 — Projects/Coursework 분리, 기술 배지 확장, top-langs 카드. 저장소 4개에 topics 추가
+- `CLAUDE.local.md`를 `기기: 데스크탑`으로 정정, `portfolio` 저장소 문서의 기기 라벨도 정정
+- 전역 `core.autocrlf=input` 설정 (CRLF 경고 제거)
+
+**다음 할 일**
+- [ ] (사용자) GitHub 프로필에서 핀 고정 — API로 불가. Customize your pins → game-voice-translator · dragon-slayer-arena · portfolio · smu-2026-2 · smu-2026-1 · pygame-games
+- [ ] `dragon-slayer-arena` 플레이 영상(233MB mp4)을 GIF/짧은 클립으로 줄여 README에 넣기
+- [ ] `smu-2026-1` 인터랙션디자인 중간 프로젝트(zip 2.3GB)에서 직접 짠 스크립트만 추려 추가할지 결정
+- [ ] `코드읽기훈련` 폴더는 개인 학습 로그라 비공개 유지 — 공개할지 결정
+
+---
+
 ## 2026-09-20 · 데스크탑
 
 > 라벨 정정 (노트북 세션에서): 원래 "노트북 (2차 세션)"으로 기록됐으나 `D:\GITHUB\` 경로는 데스크탑 것 (노트북은 C:·G:만 있음). 데스크탑 Claude는 `CLAUDE.local.md`에 `기기: 데스크탑`을 만들어 둘 것.
