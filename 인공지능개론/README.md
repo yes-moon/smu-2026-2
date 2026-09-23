@@ -21,12 +21,25 @@ iris 데이터 (150개, 특징 4개, 3종) 로 실습
 | ex4_knn_generalization.m | 3종 전부, 특징 4개로 확장. k=5 |
 | ex5_knn_space.m | meshgrid로 평면 전체를 분류해서 결정 경계 그려보기. k=50 |
 
+
+<p align="center">
+  <img src="docs/iris_sepal.png" width="48%">
+  <img src="docs/iris_petal.png" width="48%">
+</p>
+<p align="center"><sub>왼쪽 sepal, 오른쪽 petal. 빨강 setosa · 초록 versicolor · 파랑 virginica.<br>sepal만 보면 초록과 파랑이 겹쳐 있고, petal로 보면 세 종이 거의 나뉜다 — ex2·ex3이 60%에 그치고 ex4가 98.3%로 뛰는 이유가 여기 있다.</sub></p>
+
 ### 결과
 
 - ex2, ex3: 정확도 24/40 (60%). sepal만 쓰면 versicolor랑 virginica가 많이 겹쳐서 잘 안 나뉨
 - ex3 직접 구현이랑 fitcknn 결과 완전히 똑같음
 - ex4: 59/60 (98.3%). petal 특징까지 넣으니까 확 올라감
 - ex5: 빨강(setosa)/초록(versicolor)/파랑(virginica) 세 영역으로 나뉘는 게 보임
+
+
+<p align="center">
+  <img src="docs/knn_decision_boundary.png" width="62%">
+</p>
+<p align="center"><sub>ex5 — sepal 평면 130,321개 격자점을 전부 분류해 그린 결정 경계 (k=50)</sub></p>
 
 ### 정리
 
