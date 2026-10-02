@@ -1,0 +1,276 @@
+-- =====================================================================
+-- 데이터베이스 5장 SQL 명령어 예제 (ch05_데이터베이스_2026_2.pdf p.5~9)
+-- p.10~11 데이터베이스 사례는 "ch05 실습 코드.txt"
+--
+-- 슬라이드에는 쿼리만 있고 테이블·데이터가 없어서, 슬라이드 쿼리가
+-- 그대로 돌아가도록 테이블과 예시 데이터를 만들었다.
+-- (데이터 값은 직접 지어낸 것 — 결과 주석은 이 데이터 기준)
+--
+-- 실행: cmd에서
+--   chcp 65001
+--   mysql -u root -p --default-character-set=utf8mb4
+--   그다음 이 파일 내용을 구역별로 복사해 붙여넣기
+-- 또는 한 번에:  mysql -u root -p --default-character-set=utf8mb4 < "ch05 SQL명령어 예제.txt"
+-- =====================================================================
+
+
+-- #####################################################################
+-- PART 1. 장학 DB — p.5~9 (GROUP BY / HAVING / JOIN)
+-- #####################################################################
+
+DROP DATABASE IF EXISTS 장학;
+CREATE DATABASE 장학;
+USE 장학;
+
+-- 학생: 학번이 기본키
+CREATE TABLE 학생 (
+    학번  VARCHAR(10) NOT NULL,
+    이름  VARCHAR(20) NOT NULL,
+    학년  INT,
+    학과  VARCHAR(30),
+    PRIMARY KEY (학번)
+);
+
+-- 장학금: p.5~6은 이 테이블만으로 학년·학과별 집계를 하므로 학년·학과도 들고 있다.
+-- p.7 RIGHT JOIN 차이를 보려고 일부러 외래키를 걸지 않았다
+-- (학생 테이블에 없는 학번 S99가 들어갈 수 있게).
+CREATE TABLE 장학금 (
+    학번    VARCHAR(10) NOT NULL,
+    학년    INT,
+    학과    VARCHAR(30),
+    장학금  INT,
+    PRIMARY KEY (학번)
+);
+
+-- 과목·수강: p.8 "세 개 이상의 테이블 JOIN" 예제용
+CREATE TABLE 과목 (
+    과목번호  VARCHAR(10) NOT NULL,
+    과목명    VARCHAR(30) NOT NULL,
+    PRIMARY KEY (과목번호)
+);
+
+CREATE TABLE 수강 (
+    수강번호  VARCHAR(10) NOT NULL,
+    학번      VARCHAR(10) NOT NULL,
+    과목번호  VARCHAR(10) NOT NULL,
+    PRIMARY KEY (수강번호),
+    FOREIGN KEY (학번)     REFERENCES 학생(학번),
+    FOREIGN KEY (과목번호) REFERENCES 과목(과목번호)
+);
+
+INSERT INTO 학생 VALUES ('S01', '김민준', 1, '컴퓨터공학');
+INSERT INTO 학생 VALUES ('S02', '이서연', 1, '휴먼AI공학');
+INSERT INTO 학생 VALUES ('S03', '박지훈', 2, '컴퓨터공학');
+INSERT INTO 학생 VALUES ('S04', '최수아', 2, '휴먼AI공학');
+INSERT INTO 학생 VALUES ('S05', '정우진', 3, '휴먼AI공학');
+INSERT INTO 학생 VALUES ('S06', '강하은', 3, '컴퓨터공학');
+INSERT INTO 학생 VALUES ('S07', '윤도현', 4, '휴먼AI공학');
+INSERT INTO 학생 VALUES ('S08', '한지민', 4, '컴퓨터공학');   -- 장학금 행 없음 → LEFT JOIN에서 NULL
+
+INSERT INTO 장학금 VALUES ('S01', 1, '컴퓨터공학',  500000);
+INSERT INTO 장학금 VALUES ('S02', 1, '휴먼AI공학',  700000);
+INSERT INTO 장학금 VALUES ('S03', 2, '컴퓨터공학',       0);   -- 0원 → WHERE 장학금 >= 100 에서 빠짐
+INSERT INTO 장학금 VALUES ('S04', 2, '휴먼AI공학', 1000000);
+INSERT INTO 장학금 VALUES ('S05', 3, '휴먼AI공학',  300000);
+INSERT INTO 장학금 VALUES ('S06', 3, '컴퓨터공학',  800000);
+INSERT INTO 장학금 VALUES ('S07', 4, '휴먼AI공학',       0);
+INSERT INTO 장학금 VALUES ('S99', 2, '휴먼AI공학',  400000);   -- 학생 테이블에 없음 → RIGHT JOIN에서 이름 NULL
+
+INSERT INTO 과목 VALUES ('C01', '데이터베이스');
+INSERT INTO 과목 VALUES ('C02', '알고리즘');
+INSERT INTO 과목 VALUES ('C03', '인공지능개론');
+INSERT INTO 과목 VALUES ('C04', '빅데이터분석');
+
+INSERT INTO 수강 VALUES ('E01', 'S01', 'C01');
+INSERT INTO 수강 VALUES ('E02', 'S01', 'C02');
+INSERT INTO 수강 VALUES ('E03', 'S02', 'C01');
+INSERT INTO 수강 VALUES ('E04', 'S02', 'C03');
+INSERT INTO 수강 VALUES ('E05', 'S04', 'C04');
+INSERT INTO 수강 VALUES ('E06', 'S05', 'C01');
+INSERT INTO 수강 VALUES ('E07', 'S06', 'C03');
+
+SELECT * FROM 학생;
+SELECT * FROM 장학금;
+
+
+-- ---------------------------------------------------------------------
+-- p.5  GROUP BY — 같은 값을 가진 행을 하나의 그룹으로 묶어 집계
+--      SELECT 그룹기준컬럼, 집계함수(컬럼) FROM 테이블명 GROUP BY 그룹기준컬럼;
+-- ---------------------------------------------------------------------
+
+-- COUNT(): 그룹별 데이터 개수
+SELECT 학년, COUNT(*) AS 학생수
+FROM 장학금
+GROUP BY 학년;
+
+-- AVG(): 학년별 평균 장학금
+SELECT 학년, AVG(장학금) AS 평균장학금
+FROM 장학금
+GROUP BY 학년;
+
+-- 여러 집계 함수를 한꺼번에
+SELECT 학년, COUNT(*) AS 학생수,
+       SUM(장학금) AS 장학금총액,
+       AVG(장학금) AS 평균장학금,
+       MAX(장학금) AS 최대장학금,
+       MIN(장학금) AS 최소장학금
+FROM 장학금
+GROUP BY 학년;
+
+-- 두 개 이상의 컬럼으로 그룹화 (학년·학과 조합이 같은 행끼리)
+SELECT 학년, 학과, SUM(장학금) AS 장학금총액
+FROM 장학금
+GROUP BY 학년, 학과;
+
+
+-- ---------------------------------------------------------------------
+-- p.6  WHERE vs HAVING
+--   WHERE    : 개별 데이터에 조건   (그룹화 전)
+--   GROUP BY : 같은 값을 그룹화     (집계 시)
+--   HAVING   : 그룹 결과에 조건     (그룹화 후)
+--   ORDER BY : 최종 결과 정렬       (마지막)
+-- ---------------------------------------------------------------------
+
+-- 장학금이 100 이상인 학생만 대상으로 학년별 총액
+SELECT 학년, SUM(장학금) AS 장학금총액
+FROM 장학금
+WHERE 장학금 >= 100
+GROUP BY 학년;
+
+--   → 1·2·3학년. 4학년은 유일한 행(S07, 0원)이 WHERE에서 빠져 그룹 자체가 없음
+
+-- 장학금 총액이 300 이상인 학년만 조회
+SELECT 학년, SUM(장학금) AS 장학금총액
+FROM 장학금
+GROUP BY 학년
+HAVING SUM(장학금) >= 300;
+--   → 1·2·3학년. 4학년은 그룹은 만들어졌지만 총액 0이라 HAVING에서 빠짐
+--     (결과는 같아도 빠지는 시점이 다르다: WHERE=그룹화 전, HAVING=그룹화 후)
+
+-- 전부 합친 형태
+SELECT 학년, COUNT(*) AS 학생수,
+       SUM(장학금) AS 장학금총액,
+       AVG(장학금) AS 평균장학금
+FROM 장학금
+WHERE 장학금 >= 100
+GROUP BY 학년
+HAVING SUM(장학금) >= 300
+ORDER BY 장학금총액 DESC;
+--   → 2학년 2명 1400000 / 1학년 2명 1200000 / 3학년 2명 1100000
+--     (2학년 학생수가 3이 아니라 2: S03 0원이 WHERE에서 빠짐)
+
+
+-- ---------------------------------------------------------------------
+-- p.7  JOIN — 여러 테이블에 나뉜 데이터를 공통 컬럼(학번)으로 연결
+-- ---------------------------------------------------------------------
+
+-- INNER JOIN: 두 테이블 모두에서 조건이 일치하는 데이터만 (JOIN = INNER JOIN)
+SELECT 학생.이름, 장학금.장학금
+FROM 학생 JOIN 장학금 ON 학생.학번 = 장학금.학번;
+--   → 7행. 한지민(S08, 장학금 행 없음)과 S99(학생 행 없음)는 짝이 없어 빠짐
+
+-- 별칭(alias): 학생 → s, 장학금 → sc
+SELECT s.이름, s.학년, sc.장학금
+FROM 학생 s JOIN 장학금 sc ON s.학번 = sc.학번;
+
+-- LEFT JOIN: 왼쪽(학생)은 모두 출력, 오른쪽(장학금)은 일치할 때만
+SELECT s.이름, s.학년, sc.장학금
+FROM 학생 s LEFT JOIN 장학금 sc ON s.학번 = sc.학번;
+--   → 8행. 마지막에 한지민 4 NULL (짝 없는 왼쪽 행도 살림, 오른쪽 칸은 NULL)
+
+-- RIGHT JOIN: 오른쪽(장학금)을 모두 출력
+SELECT s.이름, sc.장학금
+FROM 학생 s RIGHT JOIN 장학금 sc ON s.학번 = sc.학번;
+--   → 8행. 마지막에 NULL 400000 (S99 — 짝 없는 오른쪽 행을 살림, 이름 칸은 NULL)
+
+
+-- ---------------------------------------------------------------------
+-- p.8  JOIN 응용
+--   작성 순서: ① 어떤 테이블을 연결 → ② 어떤 컬럼으로 연결(ON)
+--              → ③ 어떤 컬럼을 출력(SELECT) → ④ 필요한 조건(WHERE)
+--   INNER JOIN : 양쪽에서 일치하는 데이터만
+--   LEFT JOIN  : 왼쪽 테이블 전체 + 오른쪽 일치 데이터
+--   RIGHT JOIN : 오른쪽 테이블 전체 + 왼쪽 일치 데이터
+--   CROSS JOIN : 두 테이블의 모든 조합
+--   SELF JOIN  : 동일한 테이블을 자기 자신과 연결
+--   (슬라이드엔 "CROSS JOIN(FULL OUTER JOIN)"으로 묶여 있지만 둘은 다르다.
+--    CROSS JOIN = 모든 조합(카티션 곱), FULL OUTER JOIN = 양쪽 전체 유지.
+--    MySQL은 FULL OUTER JOIN 미지원)
+-- ---------------------------------------------------------------------
+
+-- JOIN + WHERE: 장학금이 70만원 이상인 학생
+SELECT s.이름, s.학년, sc.장학금
+FROM 학생 s JOIN 장학금 sc ON s.학번 = sc.학번
+WHERE sc.장학금 >= 700000;
+
+-- JOIN + GROUP BY: 학년별 장학금 총액
+SELECT s.학년, SUM(sc.장학금) AS 장학금총액
+FROM 학생 s JOIN 장학금 sc ON s.학번 = sc.학번
+GROUP BY s.학년;
+--   → 2학년 총액이 1000000. p.5 (장학금 테이블만 GROUP BY)에선 1400000이었다.
+--     INNER JOIN에서 S99(40만)가 빠졌기 때문 — JOIN 종류에 따라 집계가 달라진다
+
+-- 세 개 이상의 테이블 JOIN: 학생 — 수강 — 과목
+SELECT s.이름, c.과목명
+FROM 학생 s
+JOIN 수강 e ON s.학번 = e.학번
+JOIN 과목 c ON e.과목번호 = c.과목번호;
+
+-- CROSS JOIN: 모든 조합 (학생 8 × 과목 4 = 32행)
+SELECT COUNT(*) AS 조합수
+FROM 학생 CROSS JOIN 과목;
+
+
+-- ---------------------------------------------------------------------
+-- p.8  슬라이드의 영문 테이블 예제 (customers — orders — order_items — products)
+--   슬라이드 원문은 "oi.quantity AS 수량, FROM" 처럼 FROM 앞에 쉼표가 있어
+--   그대로 치면 ERROR 1064 → 쉼표를 뺐다.
+-- ---------------------------------------------------------------------
+
+CREATE TABLE customers (
+    customer_id  INT NOT NULL,
+    name         VARCHAR(20) NOT NULL,
+    PRIMARY KEY (customer_id)
+);
+
+CREATE TABLE products (
+    product_id    INT NOT NULL,
+    product_name  VARCHAR(30) NOT NULL,
+    price         INT,
+    PRIMARY KEY (product_id)
+);
+
+CREATE TABLE orders (
+    order_id     INT NOT NULL,
+    customer_id  INT NOT NULL,
+    order_date   DATE,
+    PRIMARY KEY (order_id),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- 주문 하나에 상품 여러 개 → 주문상세(order_items)로 분리
+CREATE TABLE order_items (
+    order_item_id  INT NOT NULL,
+    order_id       INT NOT NULL,
+    product_id     INT NOT NULL,
+    quantity       INT,
+    PRIMARY KEY (order_item_id),
+    FOREIGN KEY (order_id)   REFERENCES orders(order_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+INSERT INTO customers VALUES (1, '김철수'), (2, '이영희'), (3, '박민수');
+INSERT INTO products  VALUES (1, '노트북', 1200000), (2, '마우스', 25000), (3, '키보드', 45000);
+INSERT INTO orders    VALUES (101, 1, '2026-09-01'), (102, 2, '2026-09-03'), (103, 1, '2026-09-10');
+INSERT INTO order_items VALUES
+    (1, 101, 1, 1),
+    (2, 101, 2, 2),
+    (3, 102, 3, 1),
+    (4, 103, 2, 1),
+    (5, 103, 3, 1);
+
+SELECT c.name AS 고객명, p.product_name AS 상품명, oi.quantity AS 수량
+FROM customers c
+JOIN orders o       ON c.customer_id = o.customer_id
+JOIN order_items oi ON o.order_id = oi.order_id
+JOIN products p     ON oi.product_id = p.product_id;
