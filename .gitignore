@@ -15,6 +15,10 @@
 
 # ── 교수님 배포 코드 (수업에서 받은 파일) ────────────
 인공지능개론/HW1_guide.m
+인공지능개론/ex1_HierarchicalClustering.m
+인공지능개론/ex2_nonHierarchicalClustering_kmeans.m
+인공지능개론/ex3_kmeans_space.m
+# 인공지능개론/ex_hw_1.m 은 교수님이 준 과제 프레임이지만 과제 제출물(my_kmeans 호출부를 채운 것)이라 포함
 데이터베이스/쇼핑몰db.txt
 데이터베이스/예제.py
 데이터베이스/테이블생성예제_고객_주문_제품.txt

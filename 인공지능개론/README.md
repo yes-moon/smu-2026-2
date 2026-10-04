@@ -3,6 +3,7 @@
 MATLAB R2025b + Statistics and Machine Learning Toolbox 사용
 
 > **HW3 (KNN 실습)** : `ex1_dataload_visualization.m` ~ `ex5_knn_space.m` 5개 파일. 아래 3주차 표 참고
+> **k-means 과제** : `my_kmeans.m` + `ex_hw_1.m`. 아래 4주차 표 참고
 
 ## 2주차 - MATLAB 기초
 
@@ -47,3 +48,33 @@ iris 데이터 (150개, 특징 4개, 3종) 로 실습
 - kNN은 학습이 따로 없고 (데이터 저장이 끝) 분류할 때마다 전체 거리 계산해서 분류가 느림
 - k는 홀수로 (동점 방지). 3종일 때는 동점 날 수 있어서 fitcknn은 BreakTies 옵션으로 처리, mode()는 작은 값 반환
 - 거리는 유클리디안(L2) 씀. L1(맨해튼)도 있음
+
+## 4주차 - Clustering (계층적 군집, k-means)
+
+정답(label) 없이 비슷한 것끼리 묶는 비지도 학습. 10/1 수업은 결석해서 녹음과 자료로 따라감
+
+| 파일 | 내용 |
+|---|---|
+| my_kmeans.m | k-means 직접 구현 함수. `[Final_label, my_CP] = my_kmeans(setdata, grp, class)`. 초기 중심은 1~grp번째 데이터, for문으로 배정 -> 평균으로 중심 갱신 -> 할당이 안 바뀔 때까지 while |
+| ex_hw_1.m | 과제 메인. iris 특징 4개 전부 써서 my_kmeans 와 내장 kmeans('Start' 고정) 비교 |
+
+<p align="center">
+  <img src="docs/dendrogram5.png" width="80%">
+</p>
+<p align="center"><sub>수업 예제 — 5개 점의 덴드로그램 (pdist → linkage → dendrogram). 4·5와 1·3이 먼저 묶이고 2가 마지막에 붙는다</sub></p>
+
+<p align="center">
+  <img src="docs/kmeans_space.png" width="80%">
+</p>
+<p align="center"><sub>k=3 k-means 중심(×)과 영역 (sepal 2개 특징), 오른쪽은 실제 종. 빨강 setosa · 초록 versicolor · 파랑 virginica</sub></p>
+
+### 결과
+
+- ex_hw_1: my_kmeans 와 내장 kmeans 결과 150개 전부 같음 (차이 0). 중심좌표도 소수점까지 동일
+- 특징 4개 쓰면 setosa 50/50, versicolor 47/50, virginica 36/50 이 같은 군집으로 묶임. sepal 2개만 쓰면 38/50, 35/50
+- 초기 중심을 'Start'로 고정하지 않으면 내장 kmeans는 돌릴 때마다 중심이 조금씩 달라짐
+
+### 정리
+
+- 계층적: k를 미리 안 정하고 덴드로그램을 잘라서 군집 결정. 비계층적(k-means): k를 먼저 정하고 중심을 옮기며 반복
+- k-means 군집 번호엔 의미가 없음 (1이 항상 setosa가 아님)
