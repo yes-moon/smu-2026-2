@@ -1,6 +1,51 @@
 #include <stdio.h>
 
 #define n 3
+void print_matrix(int mat[n][n]) {
+    for (int i=0; i < n; i++) {
+        for (int j=0; j < n; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
+void matrixmult(int A[n][n], int B[n][n], int C[n][n]){
+	int i, j, k;
+	for(i = 0; i < n; i++){
+		for(j = 0; j < n; j++){
+			C[i][j] = 0;
+			for(k = 0; k < n; k++){
+				C[i][j] = C[i][j] + A[i][k] * B[k][j];
+			}
+		}
+	}
+}
+
+int main(){
+	int A[n][n] = {
+		{2,5,1},
+		{0,-1,3},
+		{7,2,8},
+	};
+
+	int B[n][n] = {
+		{0,1,1},
+		{1,0,-1},
+		{0,0,1}
+	};
+
+
+	int C[n][n];
+	matrixmult(A,B,C);
+	print_matrix(C);
+
+	return 0;
+}
+
+
+
 
 /*
  * Lecture 02 p.15~18 : 행렬곱셈 (Matrix Multiplication)
@@ -28,49 +73,7 @@
 
 
  /* 행렬곱 C = A x B */
-void matrixmult(int A[n][n], int B[n][n], int C[n][n]) {
 
-	for (int i = 0; i <= n - 1; i++) {
-		for (int j = 0; j <= n - 1; j++) {
-			C[i][j] = 0;
-			for (int k = 0; k <= n - 1; k++) {
-				C[i][j] = C[i][j] + A[i][k] * B[k][j];
-			}
-		}
-	}
-}
-
-/* 행렬을 2차원 모양으로 출력 */
-void print_matrix(int M[n][n]) {
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			printf("%4d", M[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-int main() {
-
-	int A[3][3] = {
-		{ 2,  5,  1 },
-		{ 0, -1,  3 },
-		{ 7,  2,  8 }
-	};
-	int B[3][3] = {
-		{ 0,  1,  1 },
-		{ 1,  0, -1 },
-		{ 0,  0,  1 }
-	};
-	int C[3][3];
-
-	matrixmult(A, B, C);
-
-	printf("\n행렬곱 C = A x B:\n");
-	print_matrix(C);
-
-	return 0;
-}
 
 /*
  * [분석용 메모]

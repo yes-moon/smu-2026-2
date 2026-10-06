@@ -1,5 +1,42 @@
 #include <stdio.h>
 
+
+int binsearch(int n, int S[], int x){
+	int low, high, mid;
+	int location = -1;
+
+
+	low = 0;
+	high = n-1;
+
+	while(low <= high && location == -1){
+		mid = (low+high)/2;
+		if(x==S[mid]){
+			location = mid;
+		}
+		else if(x < S[mid]){
+			high = mid -1;
+
+		}
+		else {
+			low = mid + 1;
+		}
+	}
+	return location;
+
+}
+
+int main(){
+	int S[] = {2,4,5,6,7,8,9,10,12,16};
+	int n = 10;
+	int x;
+
+	printf("Input integer: ");
+	scanf("%d", &x);
+	int location = binsearch(n,S,x);
+	printf("index : %d\n",location);
+
+}
 /*
  * Lecture 02 p.21~22 : 이분검색 (Binary Search)
  *
@@ -27,41 +64,6 @@
 
 
  /* 이분검색: 찾으면 index, 없으면 -1 반환 */
-int binsearch(int n, int S[], int x) {
-	// TODO: location = -1, low = 0, high = n - 1 로 초기화
-	//       while (low <= high && location == -1)
-	//           mid = (low + high) / 2;          // 정수 나눗셈이 곧 floor
-	//           x == S[mid] 이면 location = mid
-	//           x <  S[mid] 이면 high = mid - 1
-	//           그 외          low  = mid + 1
-	//       return location
-
-}
-
-int main() {
-	int S[10] = { 2, 4, 5, 6, 7, 8, 9, 10, 12, 16 };
-	int n = 10;
-	int x;
-	int location;
-
-	printf("배열 S: ");
-	for (int i = 0; i < n; i++) printf("%d ", S[i]);
-	printf("\n");
-
-	printf("찾을 값 x: ");
-	scanf("%d", &x);
-
-	location = binsearch(n, S, x);
-
-	if (location == -1) {
-		printf("%d 은(는) 배열에 없습니다. (-1)\n", x);
-	}
-	else {
-		printf("%d 은(는) index %d 에 있습니다.\n", x, location);
-	}
-
-	return 0;
-}
 
 /*
  * [분석용 메모 - p.22 Q]

@@ -19,27 +19,34 @@
 
 
 /* 교환정렬 */
-void ExchangeSort(int n, int S[]) {
-	int temp;
+//return 할 값이 없으므로 void형
+void exchangesort(int n, int S[]){
 
-	for (int i = 0; i<n-1; i++){
-		for (int j=i+1; j<n; j++){
-			if (S[i] > S[j]){
-				temp = S[i];
-				S[i] = S[j];
-				S[j] = temp;
+	int temp;
+	for(int i = 0; i < n-1; i++){
+		for(int j = i+1; j < n; j++){
+			if(S[i] > S[j]){
+				temp = S[j];
+				S[j] = S[i];
+				S[i] = temp;
+				
 			}
 		}
 	}
 }
 
-int main() {
-	int S[10] = { 12, 7, 10, 5, 16, 8, 4, 9, 6, 2 };
+int main(){
 	int n = 10;
-	ExchangeSort(n,S);
-	for (int idx=0; idx < n; idx++ ) printf("%d ", S[idx]);
+	int S[] = {12, 7, 10, 5, 16, 8, 4, 9, 6, 2};
+	exchangesort(n,S);
+	printf("Sorted List: ");
+	for(int idx = 0; idx < n; idx++){
+		printf("%d, ",S[idx]);
 	
+	}
+	printf("\n");
 }
+
 
 /*
  * [분석용 메모 - p.14]
