@@ -9,6 +9,11 @@
 *.m4a
 *.mp3
 *.wav
+*.mp4
+*.mkv
+COSS바이오헬스/
+# COSS 바이오헬스 코딩수학(타 기관 LMS 과목) — 강의 녹화·교안·시험 풀이 전부 로컬 전용
+코딩수학/
 *녹음*
 *차시*.txt
 *메모*.txt
@@ -20,6 +25,7 @@
 인공지능개론/ex3_kmeans_space.m
 인공지능개론/ex_naive_bayes.m
 인공지능개론/ex_naive_bayes2.m
+인공지능개론/dt_ex*.m
 # 인공지능개론/ex_hw_1.m 은 교수님이 준 과제 프레임이지만 과제 제출물(my_kmeans 호출부를 채운 것)이라 포함
 데이터베이스/쇼핑몰db.txt
 데이터베이스/예제.py
