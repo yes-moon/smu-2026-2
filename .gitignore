@@ -47,7 +47,14 @@ COSS바이오헬스/
 인공지능개론/ex_naive_bayes.m
 인공지능개론/ex_naive_bayes2.m
 인공지능개론/dt_ex*.m
+인공지능개론/coding.m
+인공지능개론/coding2.m
+인공지능개론/correlation_ex.m
+인공지능개론/regression_ex*.m
+인공지능개론/hw_ex.m
+인공지능개론/auto-mpg_ex.csv
 # 인공지능개론/ex_hw_1.m 은 교수님이 준 과제 프레임이지만 과제 제출물(my_kmeans 호출부를 채운 것)이라 포함
+# 인공지능개론/HW_regression.m 은 hw_ex.m(참고 파일)을 바탕으로 한 과제 제출물이라 포함
 데이터베이스/쇼핑몰db.txt
 데이터베이스/예제.py
 데이터베이스/테이블생성예제_고객_주문_제품.txt
